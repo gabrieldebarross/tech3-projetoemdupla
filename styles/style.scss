@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); // Monstserrat
+
+:root {
+    --primarycolor: #0A74DA; // Utilização: Para destacar elementos importantes, como botões e links.
+    --secondarycolor: #F5F7FA; // Para fundos e áreas que precisam de um contraste suave com a cor primária.
+    --destaqcolor: #333333; // Para textos principais e ícones, proporcionando boa legibilidade
+    --backgroundcolor: #FFFFFF; // Para o fundo da página e áreas onde você deseja um visual limpo e arejado.
+    --bordercolor: #E1E5EA; // Para bordas e divisórias, dando uma aparência leve e limpa.
+    --alertcolor: #F5A623; // Para alertas e mensagens importantes que precisam chamar a atenção.
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat';
+    background-color: var(--secondarycolor);
+}
+
+.header, .footer {
+    background-color: var(--primarycolor); // Versão 1
+    transition: .5s;
+}
+
+.header.active {
+    background-color: var(--backgroundcolor); // Versão 2
+
+    .container {
+        .brand.active {
+            color: var(--destaqcolor); // Versão 2
+        }
+
+        #stylecolor.active {
+            background-color: var(--backgroundcolor);
+        }
+
+    }
+}
+
+.header {
+    padding: 1em 1.5em;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        .brand {
+            font-size: 1.3em;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--backgroundcolor); // Versão 1
+
+            transition: .5s;
+        }
+    
+        .navbar {
+            ul {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: .5em;
+    
+                li {
+                    list-style-type: none;
+
+                    input {
+                        border-radius: 10px;
+                        border: none;
+                        outline: none;
+                        padding: 0;
+                        margin: 0;
+                        background-color: var(--primarycolor);
+                        transition: .5s;
+
+                        cursor: pointer;
+                    }
+    
+                    a {
+                        font-size: .9em;
+                        font-weight: 500;
+                        text-decoration: none;
+                        padding: .5em 1em;
+                        color: var(--backgroundcolor);
+                        transition: .5s;
+
+                        background-color: var(--destaqcolor);
+                        border-radius: 1.5em;
+                    }
+
+                    .load {
+                        color: var(--backgroundcolor);
+
+                        background-color: var(--primarycolor);
+                        outline: 1px solid var(--bordercolor);
+                    }
+                }
+            }
+        }
+    }
+} // Header
+
+
+

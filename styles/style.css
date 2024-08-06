@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --primarycolor: #0A74DA;
+  --secondarycolor: #F5F7FA;
+  --destaqcolor: #333333;
+  --backgroundcolor: #FFFFFF;
+  --bordercolor: #E1E5EA;
+  --alertcolor: #F5A623;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat';
+  background-color: var(--secondarycolor);
+}
+
+.header, .footer {
+  background-color: var(--primarycolor);
+  transition: .5s;
+}
+
+.header.active {
+  background-color: var(--backgroundcolor);
+}
+.header.active .container .brand.active {
+  color: var(--destaqcolor);
+}
+.header.active .container #stylecolor.active {
+  background-color: var(--backgroundcolor);
+}
+
+.header {
+  padding: 1em 1.5em;
+}
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .container .brand {
+  font-size: 1.3em;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--backgroundcolor);
+  transition: .5s;
+}
+.header .container .navbar ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+}
+.header .container .navbar ul li {
+  list-style-type: none;
+}
+.header .container .navbar ul li input {
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  background-color: var(--primarycolor);
+  transition: .5s;
+  cursor: pointer;
+}
+.header .container .navbar ul li a {
+  font-size: .9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: .5em 1em;
+  color: var(--backgroundcolor);
+  transition: .5s;
+  background-color: var(--destaqcolor);
+  border-radius: 1.5em;
+}
+.header .container .navbar ul li .load {
+  color: var(--backgroundcolor);
+  background-color: var(--primarycolor);
+  outline: 1px solid var(--bordercolor);
+}
+
+/*# sourceMappingURL=style.css.map */
