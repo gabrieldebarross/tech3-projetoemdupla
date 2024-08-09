@@ -19,7 +19,13 @@ body {
     background-color: var(--secondarycolor);
 }
 
-.header, .footer {
+.width {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+
+.header{
     background-color: var(--primarycolor); // Versão 1
     transition: .5s;
 }
@@ -41,12 +47,17 @@ body {
 
 .header {
     padding: 1em 1.5em;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
 
     .container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-    
+        margin: 0 auto;
+
         .brand {
             font-size: 1.3em;
             font-weight: 500;
@@ -55,14 +66,14 @@ body {
 
             transition: .5s;
         }
-    
+
         .navbar {
             ul {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: .5em;
-    
+
                 li {
                     list-style-type: none;
 
@@ -77,7 +88,7 @@ body {
 
                         cursor: pointer;
                     }
-    
+
                     a {
                         font-size: .9em;
                         font-weight: 500;
@@ -100,7 +111,223 @@ body {
             }
         }
     }
-} // Header
+}
+
+// Header
+
+@media (max-width: 850px) {
+    .header {
+        .container {
+            flex-direction: column;
+
+            .brand {
+                font-size: 1.4em;
+                margin-bottom: .6em;
+            }
+
+            .navbar {
+                ul {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: .5em;
+
+                    li {
+                        a {
+                            font-size: .8em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+} // MediaQuery Header
+
+@media (max-width: 370px) {
+    .header {
+        .container {
+            flex-direction: column;
+
+            .brand {
+                font-size: 1.2em;
+                margin-bottom: .6em;
+            }
+
+            .navbar {
+                ul {
+                    li {
+                        a {
+                            font-size: .7em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+} // MediaQuery Header
+
+.main {
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 2em;
+    margin: 3.7em 0 5.4em;
+
+    transition: 1s;
+
+    .width_main {
+        width: 50vw;
+        margin: 0 auto;
+        transition: 1s;
+
+        .main_info {
+            background-color: var(--backgroundcolor);
+            padding: 1em;
+            border-radius: 20px;
+            box-shadow: 2.5px 5px 10px var(--bordercolor);
+            border-top: 1px solid #bebebe;
+            border-bottom: 1px solid #bebebe;
+            transition: 1s;
+
+            .introducion {
+                font-size: .92em;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                line-height: 1.7em;
+                letter-spacing: 1.5px;
+                font-weight: 400;
+                transition: 1s;
+                margin: .5em 0;
+            }
+
+            .text-e {
+                display: flex;
+                justify-content: end;
+                margin-top: .5em;
+                overflow-x: hidden;
+                word-wrap: break-word;
+
+                .text-en {
+                    font-size: .92em;
+                    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    line-height: 1.7em;
+                    letter-spacing: 1.5px;
+                    font-weight: 400;
+                    transition: 1s;
+
+                    text-align: left;
+                    background-color: var(--bordercolor);
+                    max-width: 75%;
+                    width: auto;
+
+                    border-radius: 20px;
+                    padding: .5em 1em;
+                }
+            }
+        }
+    }
+} // Main
+
+@media (max-width: 850px) {
+    .main {
+        margin: 0 auto;
+        box-sizing: border-box;
+        padding: 2em;
+        margin: 6em 0 4.78em;
+
+        .width_main {
+            width: 70vw;
+            margin: 0 auto;
+            transition: 1s;
+
+            .main_info {
+                background-color: var(--backgroundcolor);
+                padding: 1em;
+                border-radius: 20px;
+
+                .introducion {
+                    font-size: .92em;
+                    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    line-height: 1.84em;
+                    letter-spacing: 1.5px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+} // MediaQuery Main
 
 
+footer.active {
+    background-color: var(--backgroundcolor);
+}
 
+.footer {
+    padding: 1em 1.5em;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    gap: 20px;
+    transition: .5s;
+    background-color: var(--primarycolor);
+
+    .dataentry {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+
+        border-radius: 2em;
+        background-color: #ededed;
+        width: 50vw;
+        transition: 1s;
+
+        .input-dataentry {
+            outline: none;
+            border: none;
+            padding: 1em;
+            width: 75%;
+            font-size: 1em;
+            background-color: transparent;
+
+            margin-left: 2dvw;
+            transition: 1s;
+        }
+
+        .submit {
+            background-image: url(../images/entrar.png);
+            background-size: cover;
+            background-color: transparent;
+            width: 2em;
+            height: 2em;
+            border: none;
+            
+            cursor: pointer;
+            margin-right: 2dvw;
+            transition: 1s;
+            opacity: .5;
+        }
+    }
+} // Footer
+
+@media (max-width: 850px) {
+    .footer {
+        padding: .8em 1em;
+    
+        .dataentry {
+            gap: 1em;
+    
+            .input-dataentry {
+                font-size: .7em;
+            }
+    
+            .submit {
+                width: 1.5em;
+                height: 1.5em;
+                margin-right: 2.5dvw;
+            }
+        }
+    } 
+} // MediaQuery Footer

@@ -1,6 +1,7 @@
 <header class="header">
+    <div class="width">
     <div class="container">
-        <a href="#" class="brand">GameName</a>
+        <a href="#" class="brand">TextAdventure</a>
         <nav class="navbar">
             <ul>
                 <li><a class="navbar-link save" href="#">Salvar</a></li>
@@ -9,6 +10,8 @@
             </ul>
         </nav>
     </div>
+    </div>
 </header>
+
 
 
