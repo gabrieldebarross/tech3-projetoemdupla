@@ -6,6 +6,8 @@
   --backgroundcolor: #FFFFFF;
   --bordercolor: #E1E5EA;
   --alertcolor: #F5A623;
+  --savebuttoncolor: rgb(28, 233, 28);
+  --savebuttonactive: rgb(27, 210, 27);
 }
 
 * {
@@ -58,6 +60,9 @@ body {
   color: var(--backgroundcolor);
   transition: .5s;
 }
+.header .container .brand:hover {
+  letter-spacing: 1px;
+}
 .header .container .navbar ul {
   display: flex;
   align-items: center;
@@ -69,8 +74,8 @@ body {
 }
 .header .container .navbar ul li input {
   border-radius: 10px;
-  border: none;
-  outline: none;
+  border: none !important;
+  outline: none !important;
   padding: 0;
   margin: 0;
   background-color: var(--primarycolor);
@@ -83,14 +88,27 @@ body {
   text-decoration: none;
   padding: .5em 1em;
   color: var(--backgroundcolor);
-  transition: .5s;
-  background-color: var(--destaqcolor);
+  background-color: var(--savebuttonactive);
   border-radius: 1.5em;
+  box-shadow: none;
+  transition: .5s;
+}
+.header .container .navbar ul li a:hover {
+  letter-spacing: 1px;
+}
+.header .container .navbar ul li .save {
+  box-shadow: 0px 1px 0px black;
+}
+.header .container .navbar ul li .save.active {
+  background-color: var(--savebuttoncolor);
+  box-shadow: 0px 1px 2.5px rgba(0, 0, 0, 0.5);
+  outline: none;
 }
 .header .container .navbar ul li .load {
   color: var(--backgroundcolor);
   background-color: var(--primarycolor);
   outline: 1px solid var(--bordercolor);
+  box-shadow: none;
 }
 
 @media (max-width: 850px) {

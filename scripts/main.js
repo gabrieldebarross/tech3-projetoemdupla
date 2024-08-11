@@ -4,6 +4,7 @@ function escopo() {
     input.readOnly = true; // Deixei como somente para leitura para o usuário não poder alterar o valor do input
     const brand = document.querySelector('.brand');
     const footer = document.querySelector('.footer');
+    const savebutton = document.querySelector('.save')
 
 
     function appplySaveSettings() { // Função irá aplicar as configurações salvas no localStorage
@@ -15,11 +16,13 @@ function escopo() {
             brand.classList.add('active');
             input.classList.add('active');
             footer.classList.add('active');
+            savebutton.classList.add('active');
         } else { // Se o 'isActive' for false, vai remover a classe 'active' aos elementos
             header.classList.remove('active');
             brand.classList.remove('active');
             input.classList.remove('active');
             footer.classList.remove('active');
+            savebutton.classList.remove('active');
         }
 
         input.value = color; // Define o valor do input com a cor recuperada do localStorage
@@ -33,6 +36,7 @@ function escopo() {
             brand.classList.remove('active');
             input.classList.remove('active');
             footer.classList.remove('active');
+            savebutton.classList.remove('active');
             input.value = '#FFFFFF';
 
             localStorage.setItem('isActive', 'false'); // Salva no localStorage
@@ -43,6 +47,7 @@ function escopo() {
             brand.classList.add('active');
             input.classList.add('active');
             footer.classList.add('active');
+            savebutton.classList.add('active');
             input.value = '#0A74DA';
 
             localStorage.setItem('isActive', 'true'); // Salva no localStorage

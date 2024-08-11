@@ -7,6 +7,8 @@
     --backgroundcolor: #FFFFFF; // Para o fundo da página e áreas onde você deseja um visual limpo e arejado.
     --bordercolor: #E1E5EA; // Para bordas e divisórias, dando uma aparência leve e limpa.
     --alertcolor: #F5A623; // Para alertas e mensagens importantes que precisam chamar a atenção.
+    --savebuttoncolor: rgb(28, 233, 28);
+    --savebuttonactive: rgb(27, 210, 27);
 }
 
 * {
@@ -25,7 +27,7 @@ body {
 }
 
 
-.header{
+.header {
     background-color: var(--primarycolor); // Versão 1
     transition: .5s;
 }
@@ -65,6 +67,9 @@ body {
             color: var(--backgroundcolor); // Versão 1
 
             transition: .5s;
+            &:hover {
+                letter-spacing: 1px;
+            }
         }
 
         .navbar {
@@ -79,8 +84,8 @@ body {
 
                     input {
                         border-radius: 10px;
-                        border: none;
-                        outline: none;
+                        border: none !important;
+                        outline: none !important;
                         padding: 0;
                         margin: 0;
                         background-color: var(--primarycolor);
@@ -95,17 +100,35 @@ body {
                         text-decoration: none;
                         padding: .5em 1em;
                         color: var(--backgroundcolor);
+
+                        background-color: var(--savebuttonactive);
+                        border-radius: 1.5em;
+                        box-shadow: none;
                         transition: .5s;
 
-                        background-color: var(--destaqcolor);
-                        border-radius: 1.5em;
+                        &:hover {
+                            letter-spacing: 1px;
+
+                        }
                     }
+
+                    .save {
+                        box-shadow: 0px 1px 0px black;
+                    }
+
+                    .save.active {
+                        background-color: var(--savebuttoncolor);
+                        box-shadow: 0px 1px 2.5px rgba(0, 0, 0, 0.5);
+                        outline: none;
+                    }
+
 
                     .load {
                         color: var(--backgroundcolor);
 
                         background-color: var(--primarycolor);
                         outline: 1px solid var(--bordercolor);
+                        box-shadow: none;
                     }
                 }
             }
@@ -141,7 +164,9 @@ body {
             }
         }
     }
-} // MediaQuery Header
+}
+
+// MediaQuery Header
 
 @media (max-width: 370px) {
     .header {
@@ -164,7 +189,9 @@ body {
             }
         }
     }
-} // MediaQuery Header
+}
+
+// MediaQuery Header
 
 .main {
     margin: 0 auto;
@@ -224,7 +251,9 @@ body {
             }
         }
     }
-} // Main
+}
+
+// Main
 
 @media (max-width: 850px) {
     .main {
@@ -253,7 +282,9 @@ body {
             }
         }
     }
-} // MediaQuery Main
+}
+
+// MediaQuery Main
 
 
 footer.active {
@@ -303,31 +334,35 @@ footer.active {
             width: 2em;
             height: 2em;
             border: none;
-            
+
             cursor: pointer;
             margin-right: 2dvw;
             transition: 1s;
             opacity: .5;
         }
     }
-} // Footer
+}
+
+// Footer
 
 @media (max-width: 850px) {
     .footer {
         padding: .8em 1em;
-    
+
         .dataentry {
             gap: 1em;
-    
+
             .input-dataentry {
                 font-size: .7em;
             }
-    
+
             .submit {
                 width: 1.5em;
                 height: 1.5em;
                 margin-right: 2.5dvw;
             }
         }
-    } 
-} // MediaQuery Footer
+    }
+}
+
+// MediaQuery Footer
