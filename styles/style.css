@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
-  --primarycolor: #0A74DA;
+  --primarycolor: #383838;
   --secondarycolor: #F5F7FA;
   --destaqcolor: #333333;
   --backgroundcolor: #FFFFFF;
@@ -8,6 +8,8 @@
   --alertcolor: #F5A623;
   --savebuttoncolor: rgb(28, 233, 28);
   --savebuttonactive: rgb(27, 210, 27);
+  --closebutton: rgb(249, 59, 59);
+  --closebuttonhover: rgb(255, 34, 34);
 }
 
 * {
@@ -23,6 +25,59 @@ body {
 .width {
   max-width: 90%;
   margin: 0 auto;
+}
+
+.modallogin {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #33333360;
+}
+.modallogin .modal-content {
+  background-color: var(--secondarycolor);
+  margin: 33dvh auto 0;
+  padding: 20px;
+  border: 1px solid var(--bordercolor);
+  width: 50%;
+  max-width: 450px;
+  border-radius: 10px;
+}
+.modallogin .modal-content .close-btn {
+  color: var(--closebutton);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 1s;
+}
+.modallogin .modal-content .close-btn:hover, .modallogin .modal-content .close-btn:focus {
+  color: var(--closebuttonhover);
+  text-decoration: none;
+  cursor: pointer;
+}
+.modallogin .modal-content form input[type="text"],
+.modallogin .modal-content form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.modallogin .modal-content form .submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--savebuttoncolor);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 1s;
+}
+.modallogin .modal-content form .submit-btn:hover {
+  background-color: var(--savebuttonactive);
 }
 
 .header {
@@ -170,6 +225,11 @@ body {
   font-weight: 400;
   transition: 1s;
   margin: .5em 0;
+  transition: 1s;
+}
+.main .width_main .main_info .introducion span {
+  text-transform: uppercase;
+  font-style: italic;
 }
 .main .width_main .main_info .text-e {
   display: flex;
@@ -273,6 +333,7 @@ footer.active {
   }
   .footer .dataentry {
     gap: 1em;
+    width: 70vw;
   }
   .footer .dataentry .input-dataentry {
     font-size: .7em;

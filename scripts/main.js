@@ -64,7 +64,7 @@ function escopo() {
     });
 }
 
-escopo(); // Produção desse comportamento foi de 4 horas e 16 minutos - Gabriel de Barros
+// escopo(); // Produção desse comportamento foi de 4 horas e 16 minutos - Gabriel de Barros
 
 function getdatainput() {
     const form = document.querySelector('.dataentry');

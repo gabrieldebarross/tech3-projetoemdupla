@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); // Monstserrat
 
 :root {
-    --primarycolor: #0A74DA; // Utilização: Para destacar elementos importantes, como botões e links.
+    --primarycolor: #383838; // Utilização: Para destacar elementos importantes, como botões e links.
     --secondarycolor: #F5F7FA; // Para fundos e áreas que precisam de um contraste suave com a cor primária.
     --destaqcolor: #333333; // Para textos principais e ícones, proporcionando boa legibilidade
     --backgroundcolor: #FFFFFF; // Para o fundo da página e áreas onde você deseja um visual limpo e arejado.
@@ -9,6 +9,10 @@
     --alertcolor: #F5A623; // Para alertas e mensagens importantes que precisam chamar a atenção.
     --savebuttoncolor: rgb(28, 233, 28);
     --savebuttonactive: rgb(27, 210, 27);
+
+    // Modals
+    --closebutton: rgb(249, 59, 59);
+    --closebuttonhover: rgb(255, 34, 34);
 }
 
 * {
@@ -26,6 +30,70 @@ body {
     margin: 0 auto;
 }
 
+// Modals Login e Cadastrar
+
+.modallogin {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #33333360;
+
+    .modal-content {
+        background-color: var(--secondarycolor);
+        margin: 33dvh auto 0;
+        padding: 20px;
+        border: 1px solid var(--bordercolor);
+        width: 50%;
+        max-width: 450px;
+        border-radius: 10px;
+
+        .close-btn {
+            color: var(--closebutton);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 1s;
+
+            &:hover,
+            &:focus {
+                color: var(--closebuttonhover);
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+
+        form {
+
+            input[type="text"],
+            input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0;
+                box-sizing: border-box;
+            }
+
+            .submit-btn {
+                width: 100%;
+                padding: 10px;
+                background-color: var(--savebuttoncolor);
+                color: white;
+                border: none;
+                cursor: pointer;
+                transition: 1s;
+
+                &:hover {
+                    background-color: var(--savebuttonactive);
+                }
+            }
+        }
+    }
+}
 
 .header {
     background-color: var(--primarycolor); // Versão 1
@@ -67,6 +135,7 @@ body {
             color: var(--backgroundcolor); // Versão 1
 
             transition: .5s;
+
             &:hover {
                 letter-spacing: 1px;
             }
@@ -223,6 +292,12 @@ body {
                 font-weight: 400;
                 transition: 1s;
                 margin: .5em 0;
+                transition: 1s;
+
+                span {
+                    text-transform: uppercase;
+                    font-style: italic;
+                }
             }
 
             .text-e {
@@ -351,6 +426,7 @@ footer.active {
 
         .dataentry {
             gap: 1em;
+            width: 70vw;
 
             .input-dataentry {
                 font-size: .7em;
