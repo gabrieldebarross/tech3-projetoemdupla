@@ -1,20 +1,44 @@
-var modal = document.getElementById("modal-login");
-        var openModalBtn = document.getElementById("openModalBtn");
-        var closeModalBtn = document.getElementById("closeModalBtn");
+function modallogin() {
+    const modallogin = document.getElementById("modal-login");
+    const openbtnmodallogin = document.getElementById("openmodallogin");
+    const closebtnmodallogin = document.getElementById("closemodallogin");
 
-        // Quando o usuário clicar no botão, abre o modal
-        openModalBtn.onclick = function() {
-            modal.style.display = "block";
+    openbtnmodallogin.onclick = function () {
+        modallogin.style.display = "block";
+    }
+
+    closebtnmodallogin.onclick = function () {
+        modallogin.style.display = "none";
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target == modallogin) { // Quando houver um click no modal, na parte escura, o modal ficara "invisivel"
+            modallogin.style.display = "none";
         }
 
-        // Quando o usuário clicar no botão de fechar, esconde o modal
-        closeModalBtn.onclick = function() {
-            modal.style.display = "none";
-        }
+    })
+}
 
-        // Quando o usuário clicar fora do modal, também esconde o modal
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
+function modalcadastro() {
+    const modalcadastro = document.getElementById("modal-cadastro");
+    const openmodalcadastro = document.getElementById("openmodalcadastro");
+    const closebtnmodalcadastro = document.getElementById("closemodalcadastro");
+
+    openmodalcadastro.onclick = function () {
+        modalcadastro.style.display = "block";
+    }
+
+    closebtnmodalcadastro.onclick = function () {
+        modalcadastro.style.display = "none";
+    }
+
+    window.addEventListener('click', (e) => {
+        if(e.target == modalcadastro){ // Quando houver um click no modal, na parte escura, o modal ficara "invisivel", porque o evento target pegara o elemento dom onde houve o click, se for igual ao elemento modalcadastro = true, executara a acao do estilo
+            modalcadastro.style.display = "none";
         }
+    })
+}
+
+
+modallogin();
+modalcadastro();

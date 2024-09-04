@@ -19,8 +19,8 @@
                 <a href="#" class="brand">Shadow Mask</a>
                 <nav class="navbar">
                     <ul>
-                        <li><a class="navbar-link save login-btn" id="openModalBtn" href="#">Login</a></li>
-                        <li><a class="navbar-link load" href="#">Cadastrar</a></li>
+                        <li><a class="navbar-link save login-btn" id="openmodallogin" href="#">Login</a></li>
+                        <li><a class="navbar-link load" href="#" id="openmodalcadastro">Cadastrar</a></li>
 
                         <!-- <li><input type="color" id="stylecolor" value="#FFFFFF" readonly></li> -->
                     </ul>
@@ -31,19 +31,36 @@
 
     <div id="modal-login" class="modallogin">
         <div class="modal-content">
-            <span class="close-btn" id="closeModalBtn">&times;</span>
+            <span class="close-btn" id="closemodallogin">&times;</span>
             <h2>Login</h2>
-            <form>
-                <label for="username">Usuário:</label>
-                <input type="text" id="username" name="username" required>
+            <form autocomplete="off">
+                <label for="usernamelogin">Usuário:</label>
+                <input type="text" id="usernamelogin" name="usernamelogin" placeholder="Digite seu nome de usuário" minlength="5" maxlength="20" required>
 
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" required>
+                <label for="passwordlogin">Senha:</label>
+                <input type="password" id="passwordlogin" name="passwordlogin" placeholder="Digite sua senha" minlength="5" maxlength="25" required>
 
                 <button type="submit" class="submit-btn">Entrar</button>
             </form>
         </div>
     </div>
+    </div>
+
+    <div class="modalcadastro" id="modal-cadastro">
+        <div class="modal-content">
+            <span class="close-btn" id="closemodalcadastro">&times;</span>
+            <h2>Cadastre-se</h2>
+            <form autocomplete="off">
+                <label for="usernamecadastro">Usuário:</label>
+                <input type="text" id="usernamecadastro" name="usernamecadastro" 
+                placeholder="Defina seu nome de usuário" minlength="5" maxlength="20" required>
+
+                <label for="passwordcadastro">Senha:</label>
+                <input type="password" id="passwordcadastro" placeholder="Defina seu senha de acesso" name="passwordcadastro" minlength="5" maxlength="25" required>
+
+                <button type="submit" class="submit-btn">Caadastrar</button>
+            </form>
+        </div>
     </div>
 
     <main class="main">
