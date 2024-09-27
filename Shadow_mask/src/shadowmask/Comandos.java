@@ -1,98 +1,90 @@
 package shadowmask;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Comandos {
-    private Connection conexao;
+    private static Connection connection = ConexaoBanco.conectar();
+    private static Cenas cenas = new Cenas(connection); // Cria uma instância da classe Cenas
 
-    public Comandos(Connection conexao) {
-        this.conexao = conexao;
+    public void processarComando(String comando) {
+        if (comando.equals("help")) {
+            exibirHelp();
+        } else if (comando.startsWith("use ")) {
+            String itemNome = comando.split(" ")[1];
+            usarItem(itemNome);
+        } else if (comando.startsWith("check ")) {
+            String itemNome = comando.split(" ")[1];
+            examinarItem(itemNome);
+        } else if (comando.startsWith("get ")) {
+            String itemNome = comando.split(" ")[1];
+            pegarItem(itemNome);
+        } else if (comando.equals("inventory")) {
+            mostrarInventario();
+        } else if (comando.startsWith("use ") && comando.contains(" with ")) {
+            String[] partes = comando.split(" with ");
+            String itemInventario = partes[0].substring(4); // remove "use "
+            String itemCena = partes[1];
+            usarComandoCombinado(itemInventario, itemCena);
+        } else {
+            System.out.println("Comando não reconhecido.");
+        }
     }
 
-    // Exibe a ajuda do jogo
-    public void ajuda() {
+    private void usarItem(String itemNome) {
+        if (itemNome.equals("chave") && cenas.getCenaAtual() == 1) {
+            System.out.println("Você usou a chave na fechadura.");
+            System.out.println("Você avança para a próxima cena...");
+            cenas.proximaCena(); // Chama o método para ir para a próxima cena
+        } else if (itemNome.equals("cimitarra") && cenas.getCenaAtual() == 4) {
+            System.out.println("Você usou a cimitarra contra os guardiões.");
+            System.out.println("Você avança para a próxima cena...");
+            cenas.proximaCena();
+        } else {
+            System.out.println("Você não pode usar " + itemNome + " nesta cena.");
+        }
+    }
+
+    private void exibirHelp() {
         System.out.println("Comandos disponíveis:");
-        System.out.println("HELP: Exibe este menu de ajuda.");
-        System.out.println("USE [ITEM]: Interage com o item da cena.");
-        System.out.println("CHECK [ITEM]: Mostra a descrição do item.");
-        System.out.println("GET [ITEM]: Adiciona o item ao inventário.");
-        System.out.println("INVENTORY: Exibe os itens no seu inventário.");
-        System.out.println("USE [INVENTORY_ITEM] WITH [SCENE_ITEM]: Usa um item do inventário com um item na cena.");
-        System.out.println("SAVE: Salva o jogo.");
-        System.out.println("LOAD: Carrega um jogo salvo.");
-        System.out.println("RESTART: Reinicia o jogo.");
+        System.out.println("HELP: exibe o menu de ajuda do jogo");
+        System.out.println("USE [ITEM]: interage com o item da cena");
+        System.out.println("CHECK [ITEM]: mostra a descrição do objeto na cena");
+        System.out.println("GET [ITEM]: Se possível, adiciona o item ao inventário");
+        System.out.println("INVENTORY: mostra os itens que estão no inventário");
+        System.out.println("USE [INVENTORY_ITEM] WITH [SCENE_ITEM]: realiza a ação utilizando um item do inventário com um item da cena");
+        System.out.println("SAVE: salva o jogo");
+        System.out.println("LOAD: carrega um jogo salvo");
+        System.out.println("RESTART: reinicia o jogo");
     }
 
-    // Exibe a descrição de um item
-    public void checarItem(String nomeItem) {
+    private void examinarItem(String itemNome) {
         try {
-            String sql = "SELECT descricao FROM itens WHERE nome = ?";
-            PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, nomeItem);
-            ResultSet rs = stmt.executeQuery();
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT descricao FROM itens WHERE nome = '" + itemNome + "'");
             if (rs.next()) {
                 System.out.println(rs.getString("descricao"));
             } else {
                 System.out.println("Item não encontrado.");
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // Adiciona um item ao inventário
-    public void pegarItem(String nomeItem) {
-        try {
-            String sql = "SELECT * FROM itens WHERE nome = ?";
-            PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, nomeItem);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                System.out.println("Você pegou o item: " + nomeItem);
-                // Aqui você pode adicionar lógica para armazenar o item no inventário
-            } else {
-                System.out.println("Item não encontrado.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    private void pegarItem(String itemNome) {
+        System.out.println("Pegando " + itemNome);
+        // Lógica para pegar o item deve ser implementada aqui.
     }
 
-    // Exibe os itens no inventário
-    public void mostrarInventario() {
-        try {
-            String sql = "SELECT nome FROM inventario";
-            PreparedStatement stmt = conexao.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            System.out.println("Itens no inventário:");
-            while (rs.next()) {
-                System.out.println(rs.getString("nome"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    private void mostrarInventario() {
+        System.out.println("Itens no inventário:");
+        // Exiba os itens armazenados
     }
 
-    // Usa um item do inventário com um item na cena
-    public void usarItemCom(String itemInventario, String itemCena) {
-        try {
-            // Verifica se o item está no inventário
-            String sqlInventario = "SELECT * FROM inventario WHERE nome = ?";
-            PreparedStatement stmtInventario = conexao.prepareStatement(sqlInventario);
-            stmtInventario.setString(1, itemInventario);
-            ResultSet rsInventario = stmtInventario.executeQuery();
-
-            if (rsInventario.next()) {
-                System.out.println("Você usou o item " + itemInventario + " com " + itemCena);
-                // Aqui você pode adicionar lógica para remover o item do inventário ou continuar a história
-            } else {
-                System.out.println("Item " + itemInventario + " não encontrado no inventário.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    private void usarComandoCombinado(String itemInventario, String itemCena) {
+        System.out.println("Usando " + itemInventario + " com " + itemCena);
+        // Implementar lógica para usar um item do inventário com um item da cena
     }
 }
