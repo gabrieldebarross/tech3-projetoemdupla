@@ -10,9 +10,10 @@ public class Cenas {
 
     public Cenas(Connection connection) {
         this.connection = connection;
-        this.cenaAtual = 1; // Começa na cena 1
+        this.cenaAtual = 1;
     }
 
+    // Método para exibir a cena atual
     public void exibirCena() {
         try {
             Statement stmt = connection.createStatement();
@@ -27,12 +28,24 @@ public class Cenas {
         }
     }
 
+    // Método para avançar para a próxima cena
     public void proximaCena() {
-        cenaAtual++;
-        exibirCena(); // Exibe a nova cena
+        if (cenaAtual < 5) {
+            cenaAtual++;
+            exibirCena(); // Exibe a nova cena
+        } else {
+            System.out.println("Você completou o jogo! Parabéns!");
+        }
     }
+
 
     public int getCenaAtual() {
         return cenaAtual;
+    }
+
+    // Reinicia o jogo a partir da primeira cena
+    public void reiniciarCena() {
+        cenaAtual = 1;
+        exibirCena();
     }
 }

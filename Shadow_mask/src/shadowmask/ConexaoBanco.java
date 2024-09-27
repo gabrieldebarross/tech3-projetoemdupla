@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConexaoBanco {
     private static final String URL = "jdbc:mysql://localhost:3306/shadowmask";
     private static final String USUARIO = "root";
-    private static final String SENHA = ""; // Altere conforme necessário
+    private static final String SENHA = "";
 
     public static Connection conectar() {
         try {

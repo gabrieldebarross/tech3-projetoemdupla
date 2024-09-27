@@ -8,6 +8,7 @@ public class Comandos {
     private static Connection connection = ConexaoBanco.conectar();
     private static Cenas cenas = new Cenas(connection); // Cria uma instância da classe Cenas
 
+    // Processa o comando digitado pelo jogador
     public void processarComando(String comando) {
         if (comando.equals("help")) {
             exibirHelp();
@@ -22,43 +23,36 @@ public class Comandos {
             pegarItem(itemNome);
         } else if (comando.equals("inventory")) {
             mostrarInventario();
-        } else if (comando.startsWith("use ") && comando.contains(" with ")) {
-            String[] partes = comando.split(" with ");
-            String itemInventario = partes[0].substring(4); // remove "use "
-            String itemCena = partes[1];
-            usarComandoCombinado(itemInventario, itemCena);
+        } else if (comando.equals("restart")) {
+            reiniciarJogo();
         } else {
             System.out.println("Comando não reconhecido.");
         }
     }
 
+    // Usar item em uma determinada cena
     private void usarItem(String itemNome) {
         if (itemNome.equals("chave") && cenas.getCenaAtual() == 1) {
             System.out.println("Você usou a chave na fechadura.");
             System.out.println("Você avança para a próxima cena...");
-            cenas.proximaCena(); // Chama o método para ir para a próxima cena
+            cenas.proximaCena();
+        } else if (itemNome.equals("camelo") && cenas.getCenaAtual() == 2) {
+            System.out.println("Você usa o camelo para avançar para a próxima cena...");
+            cenas.proximaCena();
         } else if (itemNome.equals("cimitarra") && cenas.getCenaAtual() == 4) {
             System.out.println("Você usou a cimitarra contra os guardiões.");
             System.out.println("Você avança para a próxima cena...");
+            cenas.proximaCena();
+        } else if (itemNome.equals("chave") && cenas.getCenaAtual() == 5) {
+            System.out.println("Você usou a chave para abrir o cofre.");
+            System.out.println("Você encontrou a Máscara das Sombras!");
             cenas.proximaCena();
         } else {
             System.out.println("Você não pode usar " + itemNome + " nesta cena.");
         }
     }
 
-    private void exibirHelp() {
-        System.out.println("Comandos disponíveis:");
-        System.out.println("HELP: exibe o menu de ajuda do jogo");
-        System.out.println("USE [ITEM]: interage com o item da cena");
-        System.out.println("CHECK [ITEM]: mostra a descrição do objeto na cena");
-        System.out.println("GET [ITEM]: Se possível, adiciona o item ao inventário");
-        System.out.println("INVENTORY: mostra os itens que estão no inventário");
-        System.out.println("USE [INVENTORY_ITEM] WITH [SCENE_ITEM]: realiza a ação utilizando um item do inventário com um item da cena");
-        System.out.println("SAVE: salva o jogo");
-        System.out.println("LOAD: carrega um jogo salvo");
-        System.out.println("RESTART: reinicia o jogo");
-    }
-
+    // Exibe a descrição de um item
     private void examinarItem(String itemNome) {
         try {
             Statement stmt = connection.createStatement();
@@ -73,18 +67,35 @@ public class Comandos {
         }
     }
 
+    // Pegar um item
     private void pegarItem(String itemNome) {
-        System.out.println("Pegando " + itemNome);
-        // Lógica para pegar o item deve ser implementada aqui.
+        if (itemNome.equals("chave") && cenas.getCenaAtual() == 1) {
+            System.out.println("Você pegou a chave e a armazenou no inventário.");
+        } else if (itemNome.equals("cimitarra") && cenas.getCenaAtual() == 3) {
+            System.out.println("Você pegou a cimitarra.");
+        } else {
+            System.out.println("Não há " + itemNome + " para pegar nesta cena.");
+        }
     }
 
+    // Mostra os itens no inventário
     private void mostrarInventario() {
-        System.out.println("Itens no inventário:");
-        // Exiba os itens armazenados
+        System.out.println("Inventário: [Placeholder]");
     }
 
-    private void usarComandoCombinado(String itemInventario, String itemCena) {
-        System.out.println("Usando " + itemInventario + " com " + itemCena);
-        // Implementar lógica para usar um item do inventário com um item da cena
+    // Exibe a lista de comandos disponíveis
+    private void exibirHelp() {
+        System.out.println("Comandos disponíveis:");
+        System.out.println("HELP: exibe o menu de ajuda do jogo");
+        System.out.println("USE [ITEM]: interage com o item da cena");
+        System.out.println("CHECK [ITEM]: mostra a descrição do objeto na cena");
+        System.out.println("GET [ITEM]: Se possível, adiciona o item ao inventário");
+        System.out.println("INVENTORY: mostra os itens que estão no inventário");
+        System.out.println("RESTART: reinicia o jogo");
+    }
+
+    // Reinicia o jogo, voltando à primeira cena
+    private void reiniciarJogo() {
+        cenas.reiniciarCena(); // Reinicia o jogo
     }
 }
