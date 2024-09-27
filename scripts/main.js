@@ -48,10 +48,10 @@ function escopo() {
             input.classList.add('active');
             footer.classList.add('active');
             savebutton.classList.add('active');
-            input.value = '#0A74DA';
+            input.value = '#383838';
 
             localStorage.setItem('isActive', 'true'); // Salva no localStorage
-            localStorage.setItem('color', '#0A74DA');
+            localStorage.setItem('color', '#383838');
             console.log('A classe active foi adicionada')
         }
     }
@@ -64,7 +64,7 @@ function escopo() {
     });
 }
 
-// escopo(); // Produção desse comportamento foi de 4 horas e 16 minutos - Gabriel de Barros
+escopo(); // Produção desse comportamento foi de 4 horas e 16 minutos - Gabriel de Barros
 
 function getdatainput() {
     const form = document.querySelector('.dataentry');

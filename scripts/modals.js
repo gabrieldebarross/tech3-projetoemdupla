@@ -1,3 +1,4 @@
+// Gabriel de Barros The Creator 
 function modallogin() {
     const modallogin = document.getElementById("modal-login");
     const openbtnmodallogin = document.getElementById("openmodallogin");
@@ -28,7 +29,7 @@ function modalcadastro() {
         modalcadastro.style.display = "block";
     }
 
-    closebtnmodalcadastro.onclick = function () {
+    closebtnmodalcadastro.onclick = function () {1,41
         modalcadastro.style.display = "none";
     }
 
